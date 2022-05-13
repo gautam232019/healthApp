@@ -6,7 +6,7 @@ import Logo from '../assets/logo.png'
 const Header = () => {
 
 const styles = {
-   header: `bg-[#17171A] text-white h-35 flex gap-[20px] w-full pt-[20px] pb-[20px] px-40`, 
+   header: `bg-[#17171A] text-white h-35 flex gap-[60px] w-full pt-[20px] pb-[20px] px-40`, 
    headerWrapper: `flex justify-center h-full max-w-screen-xl mx-auto
    px-5 mt-3`,
    nav: `flex justify-center items-center gap-[20px]`,
