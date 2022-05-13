@@ -2,13 +2,13 @@ import React from 'react'
 import Image from 'next/image'
 // import { ConnectButton } from 'web3uikit'
 import Emblem from '../assets/emblemIndia.png'
-
+import Logo from '../assets/logo.png'
 const Header = () => {
 
 const styles = {
-   header: `bg-[#17171A] text-white h-35 flex gap-[80px] w-full p-[20px]`, 
+   header: `bg-[#17171A] text-white h-35 flex gap-[20px] w-full pt-[20px] pb-[20px] px-40`, 
    headerWrapper: `flex justify-center h-full max-w-screen-xl mx-auto
-   px-4 mt-3`,
+   px-5 mt-3`,
    nav: `flex justify-center items-center gap-[20px]`,
    navItem: `relative mr-1 cursor-pointer hover:opacity-60`,
    navLink: `text-white flex mx-[10px]`,
@@ -27,10 +27,18 @@ const styles = {
         width={60}
         height={60}
         />
-
-        <div className='relative mt-5 mr-2 cursor-pointer hover:opacity-60'>
+        <table className='mr-2 cursor-pointer hover:opacity-60'>
+         <tr>   
+        <div className='font-bold text-2xl text-white'>
+            NHC
+        </div>
+        </tr>
+        <tr>
+        <div className='relative'>
           <div className='text-white flex'>Ministry of Health And Family Welfare</div>
         </div>
+        </tr>
+        </table>
         <div className={styles.headerWrapper}>
             <nav className={styles.nav}>
                 <div className={styles.navItem}>
