@@ -1,12 +1,33 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Image from 'next/image'
-// import { ConnectButton } from 'web3uikit'
-import Emblem from '../assets/emblemIndia.png'
-import Logo from '../assets/logo.png'
+import {useRouter} from 'next/router'
+import { useMoralis } from "react-moralis";
+import {toast, ToastContainer } from 'react-nextjs-toast'
+import { ConnectButton } from 'web3uikit'
 const Header = () => {
+const router = useRouter()
+const {Moralis} = useMoralis()
+ 
+// const [user,setUser] = useState('');
+
+const viewForm = () => {
+    console.log(Moralis.account)
+    if(Moralis.account){
+    // setUser(Moralis.account.toString)
+    router.push(
+        `/form/healthForm/?address=${Moralis.account}`,
+    )
+    }
+    else{
+        toast.notify(`Please connect your wallet!`,{
+            duration: 5,
+            type: "error"
+          })
+    }
+}
 
 const styles = {
-   header: `bg-[#17171A] text-white h-35 flex gap-[60px] w-full pt-[20px] pb-[20px] px-40`, 
+   header: `bg-[#17171A] text-white h-35 flex justify-center lg:gap-[40px] w-full pt-[30px] pb-[20px] px-10 `, 
    headerWrapper: `flex justify-center h-full max-w-screen-xl mx-auto
    px-5 mt-3`,
    nav: `flex justify-center items-center gap-[20px]`,
@@ -16,10 +37,12 @@ const styles = {
    right-0 top-1 ring-4`,
    inputContainer: `flex items-center justify-center p-2 rounded bg-[#171924]`,
    input: `bg-transparent outline-none text-white w-70 ml-3`,
+//    logo:`font-bold text-2xl text-white`,
 }
 
   return (
       <div>
+          <ToastContainer />
     <div className={styles.header}>
         <Image
         src='https://www.cowin.gov.in/assets/images/emblem-gov.svg'
@@ -29,13 +52,13 @@ const styles = {
         />
         <table className='mr-2 cursor-pointer hover:opacity-60'>
          <tr>   
-        <div className='font-bold text-2xl text-white'>
+        <div id='logo'>
             NHC
         </div>
         </tr>
         <tr>
         <div className='relative'>
-          <div className='text-white flex'>Ministry of Health And Family Welfare</div>
+          <div className='flex text-white'>Ministry of Health And Family Welfare</div>
         </div>
         </tr>
         </table>
@@ -61,8 +84,8 @@ const styles = {
                     <div className={styles.navLink}>Partners</div>
                     {/* <div className={styles.badge}></div> */}
                 </div>
-                <div className='text-white flex mx-[60px] border-2 rounded-lg p-2 cursor-pointer hover:opacity-60'>
-                    <div className={styles.navLink}>Register/Sign In</div>
+                <div className='text-white flex mx-[60px] border-2 rounded-lg p-2 cursor-pointer hover:opacity-60' onClick={viewForm}>
+                    <div className={styles.navLink}>Register for health card</div>
                     {/* <div className={styles.badge}></div> */}
                 </div>
                 {/* <div className={styles.navItem}>
@@ -73,15 +96,16 @@ const styles = {
                     <div className={styles.navLink}>Learn</div> */}
                     {/* <div className={styles.badge}></div> */}
                 {/* </div> */}
+                <ConnectButton/>
             </nav>
 
-            {/* <div className='flex items-center'> */}
+            <div className='flex items-center'>
                     {/* <ConnectButton/> */}
                 {/* <div className={styles.inputContainer}> */}
                     {/* <Search/> */}
                     {/* <input className={styles.input} placeholder = 'Search'></input> */}
                 {/* </div> */}
-            {/* </div> */}
+            </div>
         </div>
     </div>
     </div>
